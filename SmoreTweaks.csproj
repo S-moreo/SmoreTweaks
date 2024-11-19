@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblySearchPaths>$(AssemblySearchPaths);F:\SteamLibrary\steamapps\common\WEBFISHING\GDWeave\core</AssemblySearchPaths> <!-- Specify the hard path to GDWeave assembly -->
+        <Version>1.0.0.0</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="GDWeave" Private="false" />
+        <Reference Include="Serilog" Private="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="manifest.json" CopyToOutputDirectory="PreserveNewest" /> <!-- Ensure manifest is included -->
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Serilog" Version="4.1.0" /> <!-- Keep the package reference for Serilog -->
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(GDWeavePath)' != ''">
+        <ItemGroup>
+            <_SourceFiles Include="$(OutDir)\**\*.*" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(_SourceFiles)" DestinationFolder="$(GDWeavePath)/mods/$(AssemblyName)" />
+    </Target>
+
+</Project>

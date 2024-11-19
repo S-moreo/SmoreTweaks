@@ -1,0 +1,12 @@
+{
+    "Id": "SmoreTweaks",
+    "AssemblyPath": "SmoreTweaks.dll",
+    "PackPath": null,
+    "Dependencies": [],
+    "Metadata": {
+      "Name": "S'more Tweaks",
+      "Author": "Smoreo",
+      "Version": "0.0.1",
+      "Description": "Various Tweaks."
+    }
+  }
